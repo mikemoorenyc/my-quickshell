@@ -1,5 +1,33 @@
-import Qt5Compat.GraphicalEffects
+//import Qt5Compat.GraphicalEffects
 import QtQuick // for Text
+import qs.util
+
+Item {
+    property string iconName
+    property string iconColor:Theme.colorFG
+    property int size: 18
+
+    width:size 
+    height:size + 2
+    FontLoader {
+        id:materialIcon
+        source:Qt.resolvedUrl("../assets/Material_Symbols_Sharp/MaterialSymbolsSharp-VariableFont_FILL,GRAD,opsz,wght.ttf")
+    }
+    Text {
+        
+        font.family:materialIcon.font.family
+        font.pixelSize:size
+        text: iconName
+   
+        anchors {
+            left:parent.left
+            top:parent.top
+        }
+        color:iconColor
+        lineHeight:size
+    }
+}
+/*assets/Material_Symbols_Sharp/MaterialSymbolsSharp-VariableFont_FILL,GRAD,opsz,wght.ttf
 Image {
     id:cdIcon
     property string iconColor: Theme.colorFG
@@ -10,10 +38,11 @@ Image {
         height:size
     }
     source:`/home/admin/.config/my-quickshell/icons/${iconName}.svg`
-    ColorOverlay {
+   ColorOverlay {
         anchors.fill:parent
         source:parent
         color:iconColor
     }
 }
+*/
 

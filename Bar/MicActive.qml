@@ -6,9 +6,9 @@ import Quickshell.Services.Pipewire
 
 BarButton {
     id:micActive
-    backgroundColor:!Sound.micMuted?Theme.colorBlueDim:"transparent"
-    backgroundColorHover:!Sound.micMuted?Theme.colorBlue:Theme.colorShell
-    borderColor:Theme.colorBlue
+    backgroundColor:!Sound.micMuted?Theme.colorBlueBG:"transparent"
+    backgroundColorHover:!Sound.micMuted?Theme.colorBlueDim:Theme.colorShell
+    borderColor:Theme.colorBlueBG
     visible: activeTracker.linkGroups.length
     PwNodeLinkTracker {
         id:activeTracker
@@ -20,8 +20,9 @@ BarButton {
     }
     
     CDIcon {
-        iconName:Sound.micMuted?"microphone-mute":"microphone"
+        iconName:Sound.micMuted?"mic_off":"mic"
         anchors.centerIn:parent
+        iconColor:"white"
     }
 
     click: () => {

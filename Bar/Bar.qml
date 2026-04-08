@@ -6,6 +6,7 @@ import Quickshell.Widgets
 import Qt5Compat.GraphicalEffects
 import qs.Bar.Weather
 import qs.Bar.QuickSettings
+import qs.Bar.CalendarWindow
 import "../util/"
 import qs.Bar.Tray
 //#6a7a00
@@ -36,6 +37,7 @@ PanelWindow {
     anchors {
         fill:parent
     }
+    
     Item {
       RowLayout {
         spacing:theme.marginButton
@@ -53,22 +55,18 @@ PanelWindow {
         Layout.fillWidth: true
 
     }
-    
+    ScreenRecording{}
     Pomo{}
     MicActive{}
     TrayButton{}
     QuickSettingsButton{}
     WeatherButton{}
-    
-    Item {
-        
-        Clock{
+    Clock{
           
         }
-        MarginWrapperManager {
-            rightMargin:12
-        }
-    }
+    CalendarButton{Layout.rightMargin:12}
+    
+    
     
   }
   MouseArea {
@@ -76,6 +74,7 @@ PanelWindow {
     anchors.fill:parent
     onClicked: {
       ShellContext.openWindow=""
+      ShellContext.trayButton = null
     }
   }
 

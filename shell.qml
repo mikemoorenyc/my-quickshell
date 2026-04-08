@@ -7,12 +7,14 @@ import qs.Bar.Tray
 import qs.util
 import qs.OSD
 import qs.Bar.QuickSettings
+import qs.Bar.CalendarWindow
 ShellRoot {
-  
+
   Bar{}
   TrayWindow{}
-  ClickMask{}
+ 
   Osd{}
   QuickSettingsWindow{}
-  
+  CalendarWindow{}
+     ClickMask{}
 }

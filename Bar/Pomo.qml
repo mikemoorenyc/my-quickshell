@@ -16,9 +16,32 @@ RowLayout {
     readonly property int baseValue:2100
     property int counter: baseValue
     property string pomoColor: theme.colorFG
+    id:pomodoroComponent
     Process {
         id:notifier 
         running:false
+    }
+    IpcHandler {
+        target: "pomodoroComponent"
+        function updateRunning(value:string) {
+            if(value == "stop") {
+                counter=baseValue
+                pomoOn=false
+                pomoBreak=false
+                pomoPause=false
+
+            }
+            if(!pomoOn) return 
+            if(value == "pause") {
+              
+                pomoPause = true 
+            }
+            if(value == "play") {
+                if(!pomoOn) return 
+                pomoPause = false
+            }
+            
+        }
     }
     Component {
         id:startButton
@@ -31,7 +54,7 @@ RowLayout {
                 pomoColor = theme.colorGreen
             }
             CDIcon {
-                iconName:"bee"
+                iconName:"timer"
                 anchors.centerIn:parent
             }
     
@@ -95,7 +118,7 @@ RowLayout {
          radius:theme.buttonRadius
          CDIcon {
             rotation:rotate?-20:20
-            iconName:"bee"
+            iconName:!pomoBreak?"timer":"coffee"
             iconColor: pomoColor
             anchors {
                 left: parent.left
@@ -145,17 +168,19 @@ RowLayout {
                 rightMargin:theme.marginButton
             }
             PlayerControls {
-                iName: pomoPause?"playback-pause":"playback-play"
+                iName: pomoPause?"pause":"play_arrow"
              
                 clickAction: () => {
                      pomoPause=!pomoPause
                 }
             }
             PlayerControls {
-                iName: "playback-stop"
+                iName: "stop"
                 clickAction: () => {
                     counter=baseValue
                     pomoOn=false
+                    pomoBreak=false
+                    pomoPause=false
                 }
              
             }

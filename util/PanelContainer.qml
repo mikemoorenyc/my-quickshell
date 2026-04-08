@@ -11,7 +11,7 @@ PanelWindow {
     onVisibleChanged: {
         if (visible) {
       
-          // contentContainer.forceActiveFocus()
+           contentContainer.forceActiveFocus()
         }
     }
  
@@ -26,9 +26,10 @@ PanelWindow {
         id:contentContainer
         focus:true
         Keys.onPressed: (event) => {
-            console.log("adsf")
+     
             if (event.key === Qt.Key_Escape) {
                 ShellContext.openWindow=""
+                ShellContext.trayButton = null
                 event.accepted = true
             }
         }
@@ -48,25 +49,30 @@ PanelWindow {
 
  
     
-    }
+        }
 
-    
-    Rectangle {
+ 
+        Rectangle {
         id:buttonMask
         color:Theme.colorShell
-        implicitWidth:ShellContext.trayButton.implicitWidth -4
+        implicitWidth:ShellContext.trayButton?ShellContext.trayButton.implicitWidth -4:0
         implicitHeight:2
         anchors {
          
             bottom:parent.bottom
             left:parent.left
             leftMargin: {
+                if(!ShellContext.trayButton) return 0
                 var panelX = Quickshell.screens[0].width - (panelContainer.implicitWidth + panelContainer.margins.right)
                 return ShellContext.trayButton.x - panelX + 2
             }
            
         }
+        
     }
+    
+      
+    
     Rectangle {
         id:fullMask
         color:Theme.colorShell
@@ -90,6 +96,7 @@ PanelWindow {
         }
 
     }
+   
   
 
 }

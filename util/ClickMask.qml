@@ -8,8 +8,8 @@ import QtQuick.Layouts
 
 PanelWindow {
     color:"transparent"
-  //  visible:ShellContext.openWindow.length
-  visible:false
+    visible:ShellContext.openWindow.length
+  //visible:false
     anchors {
         left:true
         top:true
@@ -20,6 +20,7 @@ PanelWindow {
         anchors.fill:parent
         onClicked: {
             ShellContext.openWindow = ""
+            ShellContext.trayButton = null
         }
     }
 }

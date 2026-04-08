@@ -1,7 +1,8 @@
 # new shell for labwc made w/ quickshell
 
 ## Todo Shell
-- Screenrecord notifier
+- Get a nightlight thing going
+- Tooltips
 - Customize tray menus
 - quick settings panel
     - Bluetooth
@@ -10,7 +11,7 @@
     - Screenrecord
     - Screenshot
     - Nightlight
-- calendar panel
+- ~~calendar panel~~
 - integrate google calendar
 - weather panel
 - App Icons
@@ -22,9 +23,17 @@
     - Apps
     - Wallpaper
     - General list
-- Apply theme to various programes
+    - Update buttons for launcher
+
 
 ## Todo switching to labwc
+- Figure out firewall thing. Why does herolauncher fail? 
+- Create launcher lists
+- Apply colors
+    - Alacritty
+    - Firefox
+    - VsCode
+    - Kitty
 - Autostart
     - Shell
     - Background
@@ -32,4 +41,5 @@
 - Keybindings
 - Menu
 - Theme
+- Remove omarchy commands
 

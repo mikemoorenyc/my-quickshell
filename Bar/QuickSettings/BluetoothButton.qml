@@ -1,0 +1,31 @@
+import qs.util
+
+ import Quickshell.Io 
+SettingsButton {
+    iconS:"bluetooth"
+    buttonColor:Bluetooth.isConnected?Theme.colorBlueDim:""
+    buttonColorHover:Bluetooth.isConnected?Theme.colorBlueBG:""
+    borderColor: Bluetooth.isConnected?Theme.colorBlueBG:""
+    backgroundFill:Bluetooth.isConnected
+    nText : {
+        if(!Bluetooth.isConnected) return "Bluetooth"
+        let onlineDevices = []
+        
+        for (var i = 0; i < Bluetooth.connectedDevices.length; i++)
+            if(Bluetooth.connectedDevices[i].state === 1) {
+                onlineDevices.push(Bluetooth.connectedDevices[i])
+            } 
+        if(onlineDevices.length>1) {
+            return `${onlineDevices.length} devices`
+        }
+        return onlineDevices[0].name
+    }
+    Process {
+        id:openBlueTooth
+    }
+    onClicked: () => {
+        openBlueTooth.exec(["sh", "-c","omarchy-launch-bluetooth"])
+        ShellContext.openWindow=""
+        ShellContext.trayButton=null
+    }
+}

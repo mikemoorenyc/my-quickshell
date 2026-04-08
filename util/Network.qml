@@ -8,7 +8,8 @@ Singleton {
     property int strength: 0
     property bool vpn :false
     property bool connected: false 
-    property string iconName: "wifi-off"
+    property string iconName: "wifi_off"
+    property string ssid:"No network"
 
     Process {
         id:fetchNetworkData
@@ -24,18 +25,21 @@ Singleton {
                 vpn = parsedData.vpn
                 connected= parsedData.connected
                 iconName = iconPicker()
+                ssid = parsedData.ssid || "No network"
+       
 
             } 
         }
     }
     function iconPicker() {
         if(!connected) {
-            return "wifi-off"
+            return "wifi_off"
         }
         if(vpn) {
-            return "wifi-vpn"
+            return "wifi_password"
         }
-        return "wifi-"+strength
+        if(strength > 2) return "wifi"
+        return `wifi_${strength}_bar`
     }
 
     Timer {

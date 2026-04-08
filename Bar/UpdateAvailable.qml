@@ -46,14 +46,14 @@ Button {
 
     background:Rectangle {
         color:"transparent"
-    }
+    }  
     
     font.family: theme.fontIcon
     font.pixelSize:24
     visible:isVisible
     palette.buttonText: theme.colorBG
     Rectangle {
-        color:mouseArea.containsMouse?theme.colorYellow:theme.colorYellowDim
+        color:mouseArea.containsMouse?theme.colorYellowBG:theme.colorYellowDim
         radius:Theme.buttonRadius
         anchors {
             fill:parent
@@ -64,8 +64,10 @@ Button {
     }
     CDIcon {
         anchors.centerIn:parent
-        iconName:"reset"
-        iconColor:theme.colorBG
+        iconName:"update"
+      
+        iconColor:"white"
+
     }
     MouseArea {
         anchors {

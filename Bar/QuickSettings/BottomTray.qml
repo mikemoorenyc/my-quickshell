@@ -3,21 +3,21 @@ import QtQuick.Layouts
 import QtQuick
 
 RowLayout {
-    anchors {
-        left:parent.left
-        right:parent.right
-        leftMargin:Theme.marginButton/2
-        rightMargin:Theme.marginButton/2
-    }
+
     height: 36
     spacing:0;
+    Layout.fillWidth:true
+    Layout.leftMargin:Theme.marginButton
+    Layout.rightMargin:Theme.marginButton
+    Layout.bottomMargin:8
     Layout.minimumHeight:30
+    Layout.topMargin:8
   
     RowLayout {
         height: 36
         spacing:4
         QuickActionButton {
-            iName:"power"
+            iName:"power_settings_new"
             execAction: 'ags request launcherstate system --instance my-shell'
         }
     }
@@ -32,7 +32,7 @@ RowLayout {
             execAction: 'ags request launcherstate system --instance my-shell'
         }
         QuickActionButton {
-            iName:"pulse"
+            iName:"monitoring"
             execAction: 'ags request launcherstate system --instance my-shell'
         }
     }

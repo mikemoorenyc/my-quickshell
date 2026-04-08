@@ -35,19 +35,7 @@ import qs.util
       
         layoutDirection: Qt.RightToLeft
         spacing:theme.marginButton
-        BarButton {
-     
-           id: calendarButton
-           CDIcon {
-            anchors {
-                centerIn:parent
-                
-            }
-            size:16
-            iconName:"calendar"
-           }
-       
-        }
+        
         
        
         Rectangle {
@@ -55,13 +43,11 @@ import qs.util
             height:34
             color:"transparent"
             Layout.alignment: Qt.AlignRight
-             Text {
+             StyledText {
                 
                 text:time
-                font.pixelSize:13
-                font.family: theme.fontSans
-                font.letterSpacing:.25
-                color:theme.colorFG
+                font.pixelSize:13       
+      
                 lineHeight:.5
                 height:12
           
@@ -73,13 +59,13 @@ import qs.util
 
                 
             }
-            Text {
+            StyledText {
      
                 font.pixelSize:13
                 lineHeight:1
-                color:theme.colorFG
-                font.letterSpacing:.25
-                font.family:theme.fontSans
+               
+             
+           
           
                 text:date
                 Layout.alignment: Qt.AlignRight
@@ -96,6 +82,6 @@ import qs.util
             height:24
         }
  
-        
+   
         
 }

@@ -9,23 +9,34 @@ Scope {
     id:root 
 
     PwObjectTracker {
-		objects: [ Pipewire.defaultAudioSink,Pipewire?.defaultAudioSink?.audio ]
+		objects: [ Pipewire,Pipewire.defaultAudioSink ]
 	}
 
 	Connections {
         
-		target: Pipewire.ready?Pipewire?.defaultAudioSink?.audio:null
+		target: {
+            if(!Pipewire?.defaultAudioSink) return null
+            if(!Pipewire?.defaultAudioSink?.audio) return null
+            return Pipewire?.defaultAudioSink?.audio
+        }
+        ignoreUnknownSignals:true
 
 		function onVolumeChanged() {
+            if(ShellContext.openWindow == "QUICKSETTINGS_WINDOW") return 
 			root.shouldShowOsd = true;
 			hideTimer.restart();
 		}
         
 	}
     Connections {
-		target: Pipewire.ready?Pipewire?.defaultAudioSink?.audio:null
-
+		target: {
+            if(!Pipewire?.defaultAudioSink) return null
+            if(!Pipewire?.defaultAudioSink?.audio) return null
+            return Pipewire?.defaultAudioSink?.audio
+        }
+        ignoreUnknownSignals:true
 		function onMutedChanged() {
+            if(ShellContext.openWindow == "QUICKSETTINGS_WINDOW") return 
 			root.shouldShowOsd = true;
 			hideTimer.restart();
 		}
@@ -84,7 +95,7 @@ Scope {
                     verticalCenter:parent.verticalCenter
                     rightMargin:Theme.marginButton+2
                 }
-                Text {
+                StyledText {
                     color: Theme.colorBG
                     font.pixelSize: 18
                     font.family:Theme.fontSans
@@ -94,7 +105,7 @@ Scope {
                 }
             }
             Rectangle {
-                color:Theme.colorBorder
+                color:Theme.colorShell
                 implicitHeight:8
                 radius:Theme.buttonRadius
                 anchors {
@@ -104,7 +115,7 @@ Scope {
                     leftMargin:Theme.marginButton
                 }
                 Rectangle {
-                    color:Theme.colorShell
+                    color:Theme.colorYellowBG
                     radius:Theme.buttonRadius
                     anchors {
                         left:parent.left

@@ -10,20 +10,25 @@ Singleton {
     property string fontIcon: "Roboto Mono"
 
     //COLORS
-    property string colorShell: "#073642"
-    property string colorFG: "#fdf6e3"
-    property string colorLightBG: "#93a1a1"
-    property string colorFGDim: "#eee8d5"
-    property string colorBG: "#002b36"
-    property string colorYellowDim: '#916e00'
-    property string colorYellow: "#b58900"
-    property string colorBorder: "#586e75"
-    property string colorBorderDark: "#073642"
-    property string colorGreen: "#859900"
-    property string colorRed: "#dc322f"
-    property string colorRedDim: "#b02826"
-    property string colorBlue: "#268bd2"
-    property string colorBlueDim: "#1e6fa8"
+    property string colorShell: "#3e3e3e"
+    property string colorFG: "#cfcfcf"
+    property string colorLightBG: "#a2a2a2"
+    property string colorFGDim: "#a2a2a2"
+    property string colorBG: "#292929"
+    property string colorYellowBG: '#84763d'
+    property string colorYellowDim: '#6a5e31'
+    property string colorYellow: "#e0ce91"
+    property string colorBorder: "#777777"
+    property string colorBorderDark: "#4e4e4e"
+    property string colorGreen: "#9ddeaf"
+    property string colorGreenBG: "#468459"
+    property string colorGreenDim: "#386a47"
+    property string colorRed: "#ffbbb2"
+    property string colorRedBG: "#a9635d"
+    property string colorRedDim: "#874f4a"
+    property string colorBlue: "#b3d1ff"
+    property string colorBlueBG: "#5879af"
+    property string colorBlueDim: "#46618c"
 
     //RADIUS
     property int buttonRadius: 2

@@ -7,14 +7,14 @@ import Quickshell
 
 
 BarButton {
-    property string chevronIcon: ShellContext.openWindow == "SYSTEM_TRAY"?"chevron-down":"chevron-up"
+    property string chevronIcon: ShellContext.openWindow == "SYSTEM_TRAY"?"keyboard_arrow_down":"keyboard_arrow_up"
     id:systemTrayButton
     isActive: ShellContext.openWindow == "SYSTEM_TRAY"
     click: () => {
        
         ShellContext.openWindow = (ShellContext.openWindow) == "SYSTEM_TRAY"?"": "SYSTEM_TRAY"
       
-        ShellContext.trayButton = systemTrayButton
+       ShellContext.trayButton = systemTrayButton
         
     }
     CDIcon {

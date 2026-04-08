@@ -14,6 +14,7 @@ BarButtonContainer {
         ShellContext.trayButton = quickSettingsButton
         ShellContext.openWindow = "QUICKSETTINGS_WINDOW"
     }
+    //isActive:true
     isActive: ShellContext.openWindow == "QUICKSETTINGS_WINDOW"
     property var muted :""
     RowLayout {
@@ -41,9 +42,7 @@ BarButtonContainer {
         
         
     }
-    Component.onCompleted: {
-        ShellContext.trayButton = quickSettingsButton
-    }
+   
     
 
     

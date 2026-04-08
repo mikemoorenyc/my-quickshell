@@ -33,9 +33,10 @@ BarButtonContainer{
     wIcon = WeatherUtil.symbolFetch(data.current.weather_code,data.current.is_day)
   }
 
-  component ButtonText: Text {
+  component ButtonText: StyledText {
     color: theme.colorFG
     font.pixelSize:14
+    
     font.family:theme.fontMono
   }
 
@@ -50,6 +51,7 @@ BarButtonContainer{
         }
         CDIcon {
           iconName:wIcon
+          size:16
         }
         ButtonText {
             text: temp

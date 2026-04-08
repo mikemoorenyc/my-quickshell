@@ -7,7 +7,7 @@ import Quickshell
 import Quickshell.Widgets
 import Quickshell.Services.SystemTray
 import qs.util
-import Qt5Compat.GraphicalEffects
+
 PanelContainer {
     id:baseContainer
     
@@ -25,7 +25,7 @@ PanelContainer {
    
 
     margins {
-        right:Quickshell.screens[0].width - (ShellContext.trayButton.x + ShellContext.trayButton.implicitWidth)
+        right:ShellContext.trayButton?Quickshell.screens[0].width - (ShellContext.trayButton.x + ShellContext.trayButton.implicitWidth):0
         bottom:0
     }
   
