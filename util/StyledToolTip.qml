@@ -1,12 +1,11 @@
 import QtQuick // for Text
-import QtQuick.Controls
+
 import qs.util
-Tooltip {
-    id:styledTooltip
+import QtQuick.Controls
+ToolTip {
+    id:styledToolTip
     text:"Test text"
-    contentItem: Text {
-        text:styledTooltip.text
-    }
-    background: Rectangle {}
+
+    
 
 }

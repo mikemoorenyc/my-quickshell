@@ -12,33 +12,32 @@ Button {
     background:Rectangle {
         color:"transparent"
     }
-    property string btnColor: this.hovered?Theme.colorFG:Theme.colorFGDim
+    onClicked: {
+        ShellContext.openWindow = ""
+    }
+    property string btnColor: Theme.colorFG
     
     font.family: Theme.fontIcon
     font.pixelSize:20
     palette.buttonText: btnColor
     Rectangle {
-        color:launcherButton.hovered?Theme.colorShell:"transparent"
-        border {
-            color: btnColor
-            width: 1
-        }
+        color:launcherButton.hovered?Theme.colorGreyBGHover:Theme.colorGreyBG
+      
         radius:Theme.buttonRadius
         anchors {
             fill:parent
             topMargin:Theme.marginButton
                 bottomMargin:Theme.marginButton
         }
+       
         
     }
-    CDIcon {
+    SVGIcon {
         anchors.centerIn:parent
         iconName:"apps"
+  
     }
-    MouseArea {
-        anchors.fill:parent
-        hoverEnabled:true
-        cursorShape:Qt.PointingHandCursor
-    }
-   
+  
+    HH{}
+ 
 }

@@ -10,11 +10,11 @@ BarButton {
     property string chevronIcon: ShellContext.openWindow == "SYSTEM_TRAY"?"keyboard_arrow_down":"keyboard_arrow_up"
     id:systemTrayButton
     isActive: ShellContext.openWindow == "SYSTEM_TRAY"
-    click: () => {
-       
+    onClicked: () => {
+       ShellContext.trayButton = (ShellContext.openWindow) == "SYSTEM_TRAY"?null:systemTrayButton
         ShellContext.openWindow = (ShellContext.openWindow) == "SYSTEM_TRAY"?"": "SYSTEM_TRAY"
       
-       ShellContext.trayButton = systemTrayButton
+       
         
     }
     CDIcon {

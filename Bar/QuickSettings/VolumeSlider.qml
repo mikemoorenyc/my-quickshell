@@ -24,7 +24,7 @@ ColumnLayout {
         property var click
         id:soundButton
         background:Rectangle {
-            color:"transparent"
+            color:soundButton.hovered?Theme.colorShellHover:"transparent"
             border.width:1
             border.color:soundButton.hovered?Theme.colorFG:Theme.colorBorder
             radius:Theme.buttonRadius
@@ -51,7 +51,7 @@ ColumnLayout {
                     top:parent.top
                 }
             }
-        
+        HH{}
     }
 
   
@@ -74,28 +74,40 @@ ColumnLayout {
                
             }
             id: slider
+            hoverEnabled:true
             background:Rectangle {
             
-                implicitHeight:6
-                height:6
+                implicitHeight:4
+                height:4
                 y: slider.topPadding + slider.availableHeight / 2 - height / 2
                 radius:Theme.buttonRadius
-                color:Theme.colorBG
+                color:Theme.colorShellHover
                 Rectangle {
                     width: slider.visualPosition * parent.width
                     height: parent.height
-                    color: Theme.colorYellowBG
+                    color: slider.pressed?Theme.colorBlueBG:Theme.colorFG
                     radius: Theme.buttonRadius
                 }
             }
             handle: Rectangle {
+                
                 x: slider.leftPadding + slider.visualPosition * (slider.availableWidth - width)
                 y: slider.topPadding + slider.availableHeight / 2 - height / 2
-                implicitWidth: 20
-                implicitHeight: 20
+                implicitWidth: sliderHandle.hovered?20:  16
+                implicitHeight: sliderHandle.hovered?20:16
                 radius: 13
-                color: Theme.colorFG
-                border.width:0
+                color: slider.pressed?Theme.colorBlueBG:Theme.colorFG
+                border{
+                    color:slider.pressed?Theme.colorFG:"transparent"
+                    width:2
+                }   
+                
+                
+                HH {
+                    id:sliderHandle
+         
+                  
+                }
             }
         }
         SoundControl {

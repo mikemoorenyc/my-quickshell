@@ -3,8 +3,8 @@ import qs.util
  import Quickshell.Io 
 SettingsButton {
     iconS:"bluetooth"
-    buttonColor:Bluetooth.isConnected?Theme.colorBlueDim:""
-    buttonColorHover:Bluetooth.isConnected?Theme.colorBlueBG:""
+    buttonColor:Bluetooth.isConnected?Theme.colorBlueBG:""
+    buttonColorHover:Bluetooth.isConnected?Theme.colorBlueBGHover:""
     borderColor: Bluetooth.isConnected?Theme.colorBlueBG:""
     backgroundFill:Bluetooth.isConnected
     nText : {

@@ -16,16 +16,11 @@ Button {
     background: Rectangle {
         color:"transparent"
     }
- 
-    MouseArea {
-        anchors.fill:parent
-        hoverEnabled:true
-        cursorShape:Qt.PointingHandCursor
-        onClicked: ()=> {
-            click(); 
-        }
-    
+    onClicked: ()=> {
+        click(); 
     }
+    HH{}
+   
     
     Rectangle {
         anchors{

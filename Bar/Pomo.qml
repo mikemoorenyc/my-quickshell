@@ -47,11 +47,12 @@ RowLayout {
         id:startButton
         BarButton {
             
-            click: () => {
+            onClicked: () => {
                 notifier.exec(['notify-send',"Get to work"])
                 pomoOn = true
                 secondClick.running = true
                 pomoColor = theme.colorGreen
+                ShellContext.openWindow=""
             }
             CDIcon {
                 iconName:"timer"
@@ -147,17 +148,13 @@ RowLayout {
             CDIcon {
                 iconName:iName
           
-                iconColor:controlButton.hovered?theme.colorFG:theme.colorBorder
+                iconColor:controlButton.hovered?theme.colorFG:theme.colorFGDim
                 anchors.centerIn:parent
             }
-            MouseArea {
-                anchors.fill:parent
-                hoverEnabled:true
-                cursorShape:Qt.PointingHandCursor
-                onClicked: {
+            onClicked: {
                     clickAction()
                 }
-            }
+            HH{}
                 
         }
             

@@ -3,16 +3,32 @@ import QtQuick.Controls
 import "../util/"
 import Quickshell.Widgets
 import Quickshell.Io
+import QtQuick.Layouts
 
 ///home/admin/.cache/arch-updates
-Button {
+RowLayout {
+    implicitHeight:updateButton.implicitHeight
+    property bool isVisible:false
+    visible:isVisible
+    Rectangle {
+        color:Theme.colorBorder
+        width: 1
+        height:24
+        Layout.rightMargin:4
+    }
+    Button {
+    id:updateButton
     readonly property var theme: Theme
     implicitHeight:48
     implicitWidth:36
     hoverEnabled:true
-    property bool isVisible:false
+    onClicked: {
+            runUpdates.running = true
+            ShellContext.openWindow =""
+        }
     
-
+    
+    HH{id:mouseArea}
     FileView {
         id:updatesAvail
         path:"/home/admin/.cache/arch-updates"
@@ -20,19 +36,14 @@ Button {
         watchChanges: true
         onFileChanged: this.reload()
         onLoaded: {
-            checkUpdates()
-        }
-    }
-    function checkUpdates() {
-       
-
-        if(parseInt(updatesAvail.text()) > 5) {
+            if(parseInt(updatesAvail.text()) > 0) {
             isVisible = true
         } else {
             isVisible = false
         } 
-        
+        }
     }
+    
     Process {
         id:runUpdates
         running:false
@@ -53,7 +64,7 @@ Button {
     visible:isVisible
     palette.buttonText: theme.colorBG
     Rectangle {
-        color:mouseArea.containsMouse?theme.colorYellowBG:theme.colorYellowDim
+        color:mouseArea.hovered?theme.colorYellowBG:theme.colorYellowBGHover
         radius:Theme.buttonRadius
         anchors {
             fill:parent
@@ -62,27 +73,19 @@ Button {
         }
 
     }
-    CDIcon {
+    SVGIcon {
         anchors.centerIn:parent
-        iconName:"update"
+        iconName:"reset"
+        iconColor: Theme.colorTextDark
       
-        iconColor:"white"
+
 
     }
-    MouseArea {
-        anchors {
-            fill:parent
-        }
-        hoverEnabled:true 
-        id:mouseArea
-        onClicked: {
-            runUpdates.running = true
-        }
-        cursorShape:Qt.PointingHandCursor
-    }
+    
     Component.onCompleted: {
         runUpdates.exited.connect(()=> {
             recheckUpdates.running=true
         })
     }
+}
 }

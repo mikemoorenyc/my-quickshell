@@ -11,6 +11,11 @@ BarButtonContainer {
 
     id:quickSettingsButton
     click: () => {
+        if(ShellContext.openWindow == "QUICKSETTINGS_WINDOW") {
+            ShellContext.trayButton = null
+        ShellContext.openWindow = ""
+        return 
+        }
         ShellContext.trayButton = quickSettingsButton
         ShellContext.openWindow = "QUICKSETTINGS_WINDOW"
     }
@@ -40,9 +45,9 @@ BarButtonContainer {
             iconName:Sound.speakerIcon
         }
         
-        
+    
     }
-   
+    
     
 
     

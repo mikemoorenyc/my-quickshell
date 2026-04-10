@@ -5,6 +5,7 @@ import Quickshell.Widgets
 
 
 Rectangle {
+    id:barButton
     implicitHeight:48
     implicitWidth:32
     property string iconString
@@ -16,7 +17,9 @@ Rectangle {
    
     property string borderColor: theme.colorBorder
     property string borderColorHover:borderColor
-    property  bool hoverColor: (mouseArea.containsMouse || isActive)
+    property  bool hoverColor: (mouseArea.hovered || isActive)
+    signal clicked 
+ 
 
     color:"transparent"
         
@@ -47,7 +50,9 @@ Rectangle {
         }
       
         Button {
-         
+         onClicked: {
+                barButton.clicked()
+            }
         font.family: theme.fontIcon
         font.pixelSize:22
         hoverEnabled:true
@@ -57,8 +62,8 @@ Rectangle {
         palette {
             buttonText:theme.colorFG
         }
-        
-        
+       
+   
 
 
     
@@ -68,16 +73,7 @@ Rectangle {
         background:Rectangle {
             color:"transparent"
         }
-        MouseArea {
-            id:mouseArea
-            anchors.fill:parent
-            hoverEnabled:true
-            cursorShape:Qt.PointingHandCursor
-            onClicked: {
-                click()
-            }
-            
-        }
+        HH{id:mouseArea}
         
     }
 }

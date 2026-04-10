@@ -2,11 +2,12 @@ import qs.util
 import QtQuick.Layouts
 import QtQuick
 import QtQuick.Controls
-
+ import Qt5Compat.GraphicalEffects
 ColumnLayout {
     Layout.fillWidth:true
     spacing:0
     id:calendarContainer
+  
     RowLayout {
         id:calendarHeader
         Layout.fillWidth:true
@@ -30,15 +31,17 @@ ColumnLayout {
             implicitHeight:20
             background: Rectangle {
                 anchors.fill:parent
-                color:"transparent"
+                color:hovered?Theme.colorShellHover:"transparent"
                 radius:Theme.buttonRadius
                 border {
                     color:hovered?Theme.colorFG:Theme.colorBorder
                 }
             }
             onClicked: () => {
-                Calendar.shiftMonth(delta)
-            }
+                    Calendar.shiftMonth(delta)
+                }
+            HH{}
+
             CDIcon {
                 anchors.centerIn:parent
                 iconName:iName
@@ -79,7 +82,7 @@ ColumnLayout {
                 color: {
      
                     if(modelData == "S") {
-                        return Theme.colorBorder
+                        return Theme.colorFGDim
                     }
                     return Theme.colorFG
                 }
@@ -140,7 +143,7 @@ ColumnLayout {
                             StyledText {
                                 color: {
                                     if(modelData.isToday) return "white"
-                                    if(modelData.isOtherMonth) return Theme.colorBorder
+                                    if(modelData.isOtherMonth) return Theme.colorFGDim
                                     return Theme.colorFG
                                 }
                             

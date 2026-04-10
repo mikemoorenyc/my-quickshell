@@ -10,24 +10,36 @@ Singleton {
     property string fontIcon: "Roboto Mono"
 
     //COLORS
-    property string colorShell: "#3e3e3e"
-    property string colorFG: "#cfcfcf"
-    property string colorLightBG: "#a2a2a2"
+    property string colorBG: "#262626"
+    property string colorShell: "#393939"
+    property string colorShellHover: "#474747"
+    property string colorShellHoverLight: "#6f6f6f"
+    property string colorFG: "#f4f4f4"
     property string colorFGDim: "#a2a2a2"
-    property string colorBG: "#292929"
-    property string colorYellowBG: '#84763d'
+    property string colorLightBG: "#c6c6c6"
+    property string colorTextDark: "#161616"
+    
+    property string colorBorder: "#525252"
+    property string colorBorderBright: "#c6c6c6"
+    
+    property string colorYellowBG: '#f1c21b'
+    property string colorYellowBGHover: '#ddaf0a'
     property string colorYellowDim: '#6a5e31'
-    property string colorYellow: "#e0ce91"
-    property string colorBorder: "#777777"
-    property string colorBorderDark: "#4e4e4e"
-    property string colorGreen: "#9ddeaf"
-    property string colorGreenBG: "#468459"
+    property string colorYellow: "#f1c21b"
+
+    property string colorGreyBG: "#6f6f6f"
+    property string colorGreyBGHover: "#5e5e5e"
+
+    property string colorGreen: "#42be65"
+    property string colorGreenBG: "#24a148"
     property string colorGreenDim: "#386a47"
-    property string colorRed: "#ffbbb2"
-    property string colorRedBG: "#a9635d"
+    property string colorRed: "#ff8389"
+    property string colorRedBG: "#da1e28"
+    property string colorRedBGHover: "#ba1b23"
     property string colorRedDim: "#874f4a"
-    property string colorBlue: "#b3d1ff"
-    property string colorBlueBG: "#5879af"
+    property string colorBlue: "#78a9ff"
+    property string colorBlueBG: "#0f62fe"
+    property string colorBlueBGHover: "#0353e9"
     property string colorBlueDim: "#46618c"
 
     //RADIUS

@@ -9,4 +9,8 @@ Singleton {
     property var trayButton
     property var trayContentRef
     property string openWindow: ""
+
+    //PREVIEW WINDOW
+    property string previewAppId
+    property var previewAnchor
 }

@@ -9,6 +9,7 @@ import qs.Bar.QuickSettings
 import qs.Bar.CalendarWindow
 import "../util/"
 import qs.Bar.Tray
+import qs.Bar.Apps
 //#6a7a00
 PanelWindow {
     readonly property var theme: Theme
@@ -20,6 +21,7 @@ PanelWindow {
   id:barContainer
   implicitHeight:48
   color:theme.colorBG
+
   
 
   Rectangle {
@@ -53,6 +55,25 @@ PanelWindow {
       height:48
       
         Layout.fillWidth: true
+        MouseArea {
+          anchors.fill:parent
+          onClicked: {
+            ShellContext.openWindow=""
+          }
+        }
+
+    }
+    AppBar{}
+    Item {
+      height:48
+      
+        Layout.fillWidth: true
+        MouseArea {
+          anchors.fill:parent
+          onClicked: {
+            ShellContext.openWindow=""
+          }
+        }
 
     }
     ScreenRecording{}
@@ -62,20 +83,20 @@ PanelWindow {
     QuickSettingsButton{}
     WeatherButton{}
     Clock{
-          
-        }
+    }
     CalendarButton{Layout.rightMargin:12}
     
     
     
   }
-  MouseArea {
+ /*MouseArea {
     visible:ShellContext.openWindow.length
     anchors.fill:parent
     onClicked: {
       ShellContext.openWindow=""
       ShellContext.trayButton = null
     }
-  }
+  }*/
+  
 
 }

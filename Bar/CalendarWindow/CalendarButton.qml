@@ -6,15 +6,22 @@ import qs.Bar
 BarButton {
     isActive: ShellContext.openWindow == "CALENDAR_WINDOW"
     id: calendarButton
-    CDIcon {
+    SVGIcon {
     anchors {
         centerIn:parent
         
     }
+    
+    //iconName:"calendar_month"
     size:16
-    iconName:"calendar_month"
+    iconName:"calendar"
     }
-    click: () => {
+    onClicked: () => {
+        if(ShellContext.openWindow == "CALENDAR_WINDOW") {
+ShellContext.trayButton = null
+    ShellContext.openWindow = ""
+            return 
+        }
     ShellContext.trayButton = calendarButton
     ShellContext.openWindow = "CALENDAR_WINDOW"
     }

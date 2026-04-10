@@ -4,8 +4,10 @@ import qs.util
 
 Item {
     property string iconName
-    property string iconColor:Theme.colorFG
+    property string iconColor
     property int size: 18
+
+    readonly property string inIconColor: iconColor||Theme.colorFG
 
     width:size 
     height:size + 2
@@ -23,7 +25,7 @@ Item {
             left:parent.left
             top:parent.top
         }
-        color:iconColor
+        color:inIconColor
         lineHeight:size
     }
 }

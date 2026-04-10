@@ -8,11 +8,14 @@ import Quickshell.Widgets
 import Quickshell.Services.SystemTray
 import qs.util
 
-PanelContainer {
+Scope {
+  LazyLoader{
+     active:ShellContext.openWindow == "SYSTEM_TRAY"
+    PanelContainer {
     id:baseContainer
     
    
-    property bool menuOpen: false
+    
 
     
   anchors {
@@ -59,6 +62,7 @@ PanelContainer {
         id:mouseContainer
         hoverEnabled:true
         onClicked: mouse => {
+          console.log("click")
           if (mouse.button === Qt.LeftButton)
             iconImage.modelData.activate();
           else if (mouse.button === Qt.MiddleButton)
@@ -188,3 +192,7 @@ PanelContainer {
 
   
 }
+
+  }
+}
+

@@ -13,12 +13,14 @@ ColumnLayout {
     property string buttonColorHover
     property string borderColor
     property bool backgroundFill:false
+    property string iconC
     signal clicked 
   
 
-    readonly property string inBtnColor: buttonColor||Theme.colorBG
-    readonly property string inBtnColorHover: buttonColorHover||Theme.colorBorderDark
-    readonly property string inBorderColor: borderColor || Theme.colorBorder
+    readonly property string inBtnColor: buttonColor||Theme.colorShellHover
+    readonly property string inBtnColorHover: buttonColorHover||Theme.colorShellHoverLight
+    readonly property string inBorderColor: borderColor || Theme.colorShellHoverLight
+    readonly property string inIconColor: iconC || Theme.colorFG
     
 
     Button {
@@ -26,13 +28,19 @@ ColumnLayout {
         Layout.fillWidth:true
         implicitHeight:52
         id:bigButton
-        CDIcon{
+       /* CDIcon{
             size:24
             iconName:iconS
-            iconColor:backgroundFill?"white":Theme.colorFG
+            iconColor:iconC
             anchors.centerIn:parent            
         }
-        
+        */
+        SVGIcon {
+            anchors.centerIn:parent 
+            size:24
+            iconName:iconS
+            iconColor:iconC
+        }
 
         background: Rectangle {
             radius:Theme.buttonRadius
@@ -42,11 +50,12 @@ ColumnLayout {
                 color:inBorderColor
             }
         }
- 
-        hoverEnabled:true
         onClicked: {
-           settingsButton.clicked()
+            settingsButton.clicked()
         }
+        hoverEnabled:true
+        HH{}
+        
         
     }
     SettingsText {

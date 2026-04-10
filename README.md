@@ -1,15 +1,15 @@
 # new shell for labwc made w/ quickshell
 
 ## Todo Shell
+- figure out why the internet goes out everyfew minutes
 - Get a nightlight thing going
 - Tooltips
-- Customize tray menus
 - quick settings panel
-    - Bluetooth
-    - Network
-    - Colorpicker
-    - Screenrecord
-    - Screenshot
+    - ~~Bluetooth~~
+    - ~~Network~~
+    - ~~Colorpicker~~
+    - ~~Screenrecord~~
+    - ~~Screenshot~~
     - Nightlight
 - ~~calendar panel~~
 - integrate google calendar
@@ -18,7 +18,13 @@
    - Icons
    - Preview screens (might need to wait for labwc)
 - notifications
+    - do not disturb
+    - clear all
+    - slide window
 - lockscreen
+    - weather
+    - shutdown links
+    - pause pomodoro
 - launcher
     - Apps
     - Wallpaper
@@ -27,7 +33,8 @@
 
 
 ## Todo switching to labwc
-- Figure out firewall thing. Why does herolauncher fail? 
+- Figure out firewall thing. Why does herolauncher fail?. 
+- Why does my wifi connection drop every few minutes
 - Create launcher lists
 - Apply colors
     - Alacritty

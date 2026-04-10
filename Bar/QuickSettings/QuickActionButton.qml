@@ -20,10 +20,13 @@ Button {
     CDIcon {
         iconName:iName
         anchors.centerIn:parent
-        iconColor: quickActionButton.hovered ?Theme.colorFG :Theme.colorBorder
+        iconColor: quickActionButton.hovered ?Theme.colorFG :Theme.colorFGDim
         
     }
     onClicked: () => {
             executor.exec(["sh", "-c",execAction]) 
         }
+    HH{}
+  
+    
 }

@@ -43,7 +43,7 @@ BarButton {
     }
 
 
-    click: () => {
+    onClicked: () => {
        shutOff.exec(["/home/admin/.config/my-quickshell/scripts/screen-detach.sh"]) 
     }
 }

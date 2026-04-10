@@ -68,7 +68,7 @@ Scope {
         mask: Region {}
         Rectangle {
             anchors.fill:parent
-            color:Theme.colorFGDim
+            color:Theme.colorFG
             radius:Theme.buttonRadius
             border {
                 width:2
@@ -105,7 +105,7 @@ Scope {
                 }
             }
             Rectangle {
-                color:Theme.colorShell
+                color:Theme.colorLightBG
                 implicitHeight:8
                 radius:Theme.buttonRadius
                 anchors {
@@ -115,7 +115,7 @@ Scope {
                     leftMargin:Theme.marginButton
                 }
                 Rectangle {
-                    color:Theme.colorYellowBG
+                    color:Theme.colorTextDark
                     radius:Theme.buttonRadius
                     anchors {
                         left:parent.left

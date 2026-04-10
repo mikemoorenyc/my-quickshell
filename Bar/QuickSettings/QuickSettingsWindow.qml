@@ -2,6 +2,7 @@ import qs.util
 import QtQuick.Layouts
 import QtQuick
  import Quickshell.Io 
+ import Qt5Compat.GraphicalEffects
 PanelContainer {
     
     id:quickSettingsContainer
@@ -25,6 +26,7 @@ PanelContainer {
         width:360
         anchors.centerIn:parent
         spacing: 0;
+        
          GridLayout {
             Layout.fillWidth:true
             Layout.leftMargin:16
@@ -34,6 +36,9 @@ PanelContainer {
             uniformCellWidths:true
             rowSpacing:12
             columnSpacing:12
+    
+           
+             
             BluetoothButton{}
             NetworkButton{}
             SettingsButton{

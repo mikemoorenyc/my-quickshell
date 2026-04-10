@@ -7,7 +7,7 @@ import Quickshell.Services.Pipewire
 BarButton {
     id:micActive
     backgroundColor:!Sound.micMuted?Theme.colorBlueBG:"transparent"
-    backgroundColorHover:!Sound.micMuted?Theme.colorBlueDim:Theme.colorShell
+    backgroundColorHover:!Sound.micMuted?Theme.colorBlueBGHover:Theme.colorShell
     borderColor:Theme.colorBlueBG
     visible: activeTracker.linkGroups.length
     PwNodeLinkTracker {
@@ -25,7 +25,7 @@ BarButton {
         iconColor:"white"
     }
 
-    click: () => {
+    onClicked: () => {
        toggleMute.exec(["sh", "-c","pamixer --default-source -t"]) 
     }
 }

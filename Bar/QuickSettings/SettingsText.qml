@@ -5,7 +5,7 @@ StyledText {
     Layout.fillWidth:true
     maximumLineCount:1
     elide:Text.ElideRight
-    color:Theme.colorFGDim
+    color:Theme.colorFG
     font.pixelSize:13
     horizontalAlignment:Text.AlignHCenter
     font.family:Theme.fontSans
