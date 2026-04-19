@@ -17,7 +17,8 @@ RowLayout {
         height: 36
         spacing:4
         QuickActionButton {
-            iName:"power_settings_new"
+            toolTipText:"Shutdown options"
+            iName:"power"
             execAction: 'ags request launcherstate system --instance my-shell'
         }
     }
@@ -28,10 +29,12 @@ RowLayout {
         height: 36
         spacing:4
         QuickActionButton {
+            toolTipText:"System settings"
             iName:"settings"
             execAction: 'ags request launcherstate system --instance my-shell'
         }
         QuickActionButton {
+            toolTipText:"Task manager"
             iName:"monitoring"
             execAction: 'ags request launcherstate system --instance my-shell'
         }

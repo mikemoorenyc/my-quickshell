@@ -13,18 +13,18 @@ ColumnLayout {
     property string buttonColorHover
     property string borderColor
     property bool backgroundFill:false
-    property string iconC
+    property string iconC:""
     signal clicked 
   
 
     readonly property string inBtnColor: buttonColor||Theme.colorShellHover
     readonly property string inBtnColorHover: buttonColorHover||Theme.colorShellHoverLight
     readonly property string inBorderColor: borderColor || Theme.colorShellHoverLight
-    readonly property string inIconColor: iconC || Theme.colorFG
+    property string inIconColor: iconC||Theme.colorFG
     
 
     Button {
-        
+       
         Layout.fillWidth:true
         implicitHeight:52
         id:bigButton
@@ -39,7 +39,7 @@ ColumnLayout {
             anchors.centerIn:parent 
             size:24
             iconName:iconS
-            iconColor:iconC
+            iconColor:inIconColor
         }
 
         background: Rectangle {

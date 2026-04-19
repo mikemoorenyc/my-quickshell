@@ -8,7 +8,7 @@ import qs.Bar
 
 
 BarButtonContainer {
-
+    toolTipText:"Open quick tools"
     id:quickSettingsButton
     click: () => {
         if(ShellContext.openWindow == "QUICKSETTINGS_WINDOW") {
@@ -18,9 +18,24 @@ BarButtonContainer {
         }
         ShellContext.trayButton = quickSettingsButton
         ShellContext.openWindow = "QUICKSETTINGS_WINDOW"
+        ShellContext.trayButtonX = quickSettingsButton.x
+        ShellContext.trayButtonW = quickSettingsButton.implicitWidth
     }
-    //isActive:true
     isActive: ShellContext.openWindow == "QUICKSETTINGS_WINDOW"
+    onImplicitWidthChanged: {
+       if(isActive) {
+        ShellContext.trayButtonW = quickSettingsButton.implicitWidth
+       }
+    }
+    onXChanged : {
+      
+        if(isActive) {
+            ShellContext.trayButtonX = quickSettingsButton.x
+        }
+    }
+    
+    //isActive:true
+    
     property var muted :""
     RowLayout {
         id:container
@@ -30,18 +45,18 @@ BarButtonContainer {
             horizontalCenter:parent.horizontalCenter
             verticalCenter:parent.verticalCenter
         }
-        CDIcon {
+        SVGIcon {
             visible: Bluetooth.isConnected
             iconColor: Theme.colorBlue
             iconName:"bluetooth"
         }
-        CDIcon {
+        SVGIcon {
             iconColor:Network.vpn ? Theme.colorYellow:Theme.colorFG
             iconName:Network.iconName
         }
           
         
-        CDIcon {
+        SVGIcon {
             iconName:Sound.speakerIcon
         }
         

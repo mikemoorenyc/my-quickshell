@@ -10,7 +10,10 @@ import qs.Bar.QuickSettings
 import qs.Bar.CalendarWindow
 import qs.Notifications
 import qs.Bar.Apps
+import qs.Tooltip
+import qs.Launcher
 ShellRoot {
+    
   NotificationWindow{}
   PreviewWindow{}
   Bar{}
@@ -19,5 +22,8 @@ ShellRoot {
   Osd{}
   QuickSettingsWindow{}
   CalendarWindow{}
+
+  LauncherWindow{}
+  ToolTipWindow{}
   ClickMask{}
 }

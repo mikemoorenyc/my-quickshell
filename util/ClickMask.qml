@@ -16,9 +16,15 @@ PanelWindow {
         bottom:true
         right:true
     }
+
     MouseArea {
         anchors.fill:parent
         onClicked: {
+            ShellContext.openWindow = ""
+            ShellContext.trayButton = null
+            console.log("lr")
+        }
+        onWheel: {
             ShellContext.openWindow = ""
             ShellContext.trayButton = null
         }

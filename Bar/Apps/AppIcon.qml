@@ -3,10 +3,14 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import Quickshell.Wayland
 import qs.util
+import Quickshell
 
 Rectangle {
-    width:48
-    height:48
+    id:appContainer
+    property int size: 48
+    width:size
+    height:size
+    property var pos :appContainer.mapToItem(null, 0, 0)
     property string appId
     color:"transparent"
     property bool aToplevel : ToplevelManager.activeToplevel && ToplevelManager.activeToplevel.appId == appId
@@ -14,26 +18,46 @@ Rectangle {
         return ToplevelManager.toplevels.values.filter(m => m.appId === appId)
     }
     
+    
     Button {
         id:appButton
         anchors.fill:parent
         background:Rectangle{color:"transparent"}
         hoverEnabled:true
         onHoveredChanged: {
-            thumbnailShower.running = appButton.hovered
+            ShellContext.appIconHovering = this.hovered
+            if(hovered && ShellContext.openWindow == "PREVIEW_WINDOW") {
+                ShellContext.appIcon = appContainer
+                ShellContext.previewAppId= appId
+            }
+            thumbnailShower.running = true
+            
         }
         HH{}
         onClicked: {
             windows[0].activate()
-            console.log(appButton.mapToItem(null,0,0))
+            //ShellContext.appIcon = appContainer
             ShellContext.openWindow=""
+            //ShellContext.recalculate()
         }
         Timer {
             id:thumbnailShower
-            interval: 2000
+            interval: 1000
             running:false
             onTriggered: {
-                console.log("trigger")
+                if(ShellContext.previewHovering) {
+                    return 
+                }
+                if(appButton.hovered) {
+                    ShellContext.appIcon = appContainer
+                    ShellContext.previewAppId= appId
+                    ShellContext.openWindow = "PREVIEW_WINDOW"
+                } else {
+                    if(ShellContext.previewAppId == appId) {
+                        ShellContext.openWindow = ""
+                    }
+                    
+                }
             }
         }
         
@@ -90,8 +114,11 @@ Rectangle {
                 width:24
                 height:24
             }
-            source:"image://icon/"+appId
+            source: {
+                return Quickshell.iconPath(appId,true)||Quickshell.iconPath("application-x-executable")
+            }
         }
+       
 
         
 

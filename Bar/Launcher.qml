@@ -1,6 +1,6 @@
 import QtQuick // for Text
 import QtQuick.Controls
-import "../util/"
+import qs.util
 import Quickshell.Widgets
 
 
@@ -13,7 +13,8 @@ Button {
         color:"transparent"
     }
     onClicked: {
-        ShellContext.openWindow = ""
+        ShellContext.openWindow = "LAUNCHER_MENU"
+        ShellContext.launcherMenuSlug = "system"
     }
     property string btnColor: Theme.colorFG
     
@@ -38,6 +39,20 @@ Button {
   
     }
   
-    HH{}
+    HH{
+        onHoveredChanged: {
+            if(this.hovered) {
+                ShellContext.toolTipState = "hovering"
+                ShellContext.toolTipText = "Main menu"
+                ShellContext.toolTipAnchor = launcherButton
+                ShellContext.currentToolTipPanel="BAR_WINDOW"
+
+            } else {
+                ShellContext.toolTipState = "idle"
+
+            }
+        }
+    }
+    
  
 }

@@ -8,7 +8,7 @@ Singleton {
     property int strength: 0
     property bool vpn :false
     property bool connected: false 
-    property string iconName: "wifi_off"
+    property string iconName: "wifi"
     property string ssid:"No network"
 
     Process {
@@ -33,13 +33,13 @@ Singleton {
     }
     function iconPicker() {
         if(!connected) {
-            return "wifi_off"
+            return "wifi-off"
         }
         if(vpn) {
-            return "wifi_password"
+            return "wifi-vpn"
         }
         if(strength > 2) return "wifi"
-        return `wifi_${strength}_bar`
+        return `wifi-1`
     }
 
     Timer {

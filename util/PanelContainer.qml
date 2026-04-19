@@ -6,20 +6,35 @@ import Quickshell.Widgets
 import QtQuick.Layouts
 
 PanelWindow {
-    
+   
     focusable:true
     onVisibleChanged: {
         if (visible) {
-      
-           contentContainer.forceActiveFocus()
+            
+           updateTrayPos()
+           evaluator.running = true 
+        } else {
+            evaluator.running = false 
         }
     }
  
     color:Theme.colorShell
     aboveWindows:true
     property var anchorPos
-
+    property int trayW:0
+    property int trayX:0
     id:panelContainer
+    function updateTrayPos() {
+        trayW = ShellContext.trayButton.implicitWidth
+        trayX = ShellContext.trayButton.mapToItem(null,0,0).x
+    }
+    Timer {
+        id:evaluator 
+        running:false
+        interval:500
+        repeat:true
+        onTriggered: updateTrayPos() 
+    }
    
     
     Item {
@@ -50,24 +65,34 @@ PanelWindow {
  
     
         }
+        
+        
 
  
         Rectangle {
         id:buttonMask
         color:Theme.colorShell
-        implicitWidth:ShellContext.trayButton?ShellContext.trayButton.implicitWidth -4:0
-        implicitHeight:2
+        width:trayW - 4
+        height:20
         anchors {
          
             bottom:parent.bottom
             left:parent.left
             leftMargin: {
-                if(!ShellContext.trayButton) return 0
-                var panelX = Quickshell.screens[0].width - (panelContainer.implicitWidth + panelContainer.margins.right)
-                return ShellContext.trayButton.x - panelX + 2
+                let screenW = Quickshell.screens[0].width 
+                let panelX=0
+                if(panelContainer.anchors.left) {
+                    panelX = panelContainer.margins.left||0
+                }
+                if(panelContainer.anchors.right) {
+                    panelX = screenW - (panelContainer.margins.right||0) - panelContainer.implicitWidth
+                }
+
+                return trayX - panelX + 2
             }
-           
         }
+    
+           
         
     }
     
@@ -96,6 +121,9 @@ PanelWindow {
         }
 
     }
+
+   
+   
    
   
 

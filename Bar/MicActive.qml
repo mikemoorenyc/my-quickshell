@@ -19,10 +19,10 @@ BarButton {
         id:toggleMute
     }
     
-    CDIcon {
-        iconName:Sound.micMuted?"mic_off":"mic"
+    SVGIcon {
+        iconName:Sound.micMuted?"microphone-mute":"microphone"
         anchors.centerIn:parent
-        iconColor:"white"
+
     }
 
     onClicked: () => {

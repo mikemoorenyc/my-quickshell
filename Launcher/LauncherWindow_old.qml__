@@ -1,0 +1,71 @@
+import Quickshell 
+import qs.util
+import QtQuick 
+import QtQuick.Controls
+import Quickshell.Widgets
+import QtQuick.Layouts
+
+Scope {
+    LazyLoader {
+        loading:true
+        active: ShellContext.launcherMenuSlug.length > 1
+        PanelWindow {
+            
+    focusable:true
+  
+   color:"transparent"
+  
+    aboveWindows:true
+    property var anchorPos
+    visible: ShellContext.launcherMenuSlug.length > 1
+    id:panelContainer
+   // implicitHeight:contentContainer.implicitHeight
+   // implicitWidth:contentContainer.implicitWidth
+    anchors {
+        left:true
+        right:true
+        bottom:true
+        top:true
+    }
+   
+    Component {
+         id:generalComp
+        GeneralMenu {
+            menuSlug:ShellContext.launcherMenuSlug
+               // launcherContainer: contentContainer
+        }
+    }
+    Rectangle {
+        anchors.fill:parent
+        color:"transparent"
+        Loader {
+            anchors.centerIn:parent
+            sourceComponent:generalComp
+        }
+    }
+    
+    Item {
+        id:contentContainer
+        
+        focus:true
+        anchors.fill:panelContainer
+
+         Keys.onPressed: (event) => {
+            console.log(event)
+            if (event.key === Qt.Key_Escape) {
+                ShellContext.launcherMenuSlug = ""
+                event.accepted = true
+            }
+        }
+           MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    parent.forceActiveFocus()
+                    // Consume click, don't close
+                }
+        }
+
+    }
+}
+    }
+}

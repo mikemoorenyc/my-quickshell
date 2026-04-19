@@ -24,7 +24,7 @@ ColumnLayout {
             Layout.fillWidth:true
         }
         component MonthChanger: Button {
-            property string iName: "keyboard_arrow_down"
+            property string iName: "chevron-down"
             property int delta: 1
             hoverEnabled:true
             implicitWidth: 20
@@ -42,7 +42,7 @@ ColumnLayout {
                 }
             HH{}
 
-            CDIcon {
+            SVGIcon {
                 anchors.centerIn:parent
                 iconName:iName
             }
@@ -53,7 +53,7 @@ ColumnLayout {
                
                 return Calendar.month !== n.getMonth() || Calendar.year !== n.getFullYear()
             }
-            iName:"keyboard_arrow_up"
+            iName:"chevron-up"
             delta: -1
         }
         MonthChanger{}

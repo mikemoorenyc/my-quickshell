@@ -1,10 +1,17 @@
 import qs.util
 import QtQuick.Layouts
 import QtQuick
+import Quickshell
 
-PanelContainer {
+Scope {
+    LazyLoader {
+        active: ShellContext.openWindow == "CALENDAR_WINDOW"
+        PanelContainer {
     id:calendarWindow
     visible: ShellContext.openWindow == "CALENDAR_WINDOW"
+    Component.onCompleted: {
+        ShellContext.panelRefs.set("CALENDAR_WINDOW",calendarWindow)
+    }
     anchors {
         right: true
         bottom: true
@@ -31,3 +38,7 @@ PanelContainer {
     }
    
 }
+
+    }
+}
+

@@ -6,79 +6,68 @@
     let symbol = ""
     let nontime = false;
     //NON DAY SPECIFIC
-    if([56,57,66, 67].includes(id)) {
-        return "rainy_snow"
-        nontime =true
- 
-    }
     if([3].includes(id)) {
-        return"cloud"
-        nontime =true
-  
+        nontime=true
+        symbol="cloudy"
+    }
+    if([45,48].includes(id)) {
+        nontime=true
+        symbol="fog"
     }
     if([51, 53, 55].includes(id)) {
-
-     
-       return "rainy_light"
-        nontime =true
-    }
-    if([45, 48].includes(id)) {
-        return"foggy"
-       
-    }
-    if([63, 81].includes(id)) {
-     
-        return  "rainy"
-        nontime =true
-    }
-    if([65, 82].includes(id)) {
-     
-        return "rainy_heavy"
-        nontime =true
-    }
-    if([73].includes(id)) {
-        return "snowing"
-      
-        nontime =true
-    }
-    if([76].includes(id)) {
-        return "snowing_heavy"
-      
-        nontime =true
-    }
-    if([76].includes(id)) {
-        return "snowflake"
-      
-        nontime =true
-    }
-    if([99].includes(id)) {
         nontime = true
-       return "thunderstorm"
-       
+        symbol="drizzle"
     }
+    if([56, 57,66, 67].includes(id)) {
+        nontime=true
+        symbol="freezing-rain"
+    }
+    if([63,81].includes(id)) {
+        nontime=true
+        symbol="rain"
+    }
+    if([65,82].includes(id)) {
+        nontime=true
+        symbol="rain-heavy"
+    }
+    if([73,86].includes(id)) {
+        nontime=true
+        symbol="snow"
+    }
+    if([75].includes(id)) {
+        nontime=true
+        symbol="snow-heavy"
+    }
+    if([77].includes(id)) {
+        nontime=true
+        symbol="snowflake"
+    }
+    if([95,96,99].includes(id)) {
+        nontime=true
+        symbol="thunderstorm"
+    }
+
+       
+    
     //TIME SPECIFIC
     //DAYTIME
     var day = isDay > 0
         if([0].includes(id)) {
           
-        return day?"sunny":"bedtime"
+        symbol = "clear"
         }
+        if([1].includes(id)) {
+            symbol="partly-cloudy"
+        }
+        if([2].includes(id)) {
+            symbol="mostly-cloudy"
+        }
+        
         if([61,80].includes(id)) {
-         
-            return "rainy_light"
-        }
-        if([1, 2,].includes(id)) {
-   
-            return day?"partly_cloudy_day":"partly_cloudy_night"
+            symbol="rain-light"
         }
         if([71,85].includes(id)) {
-         
-            return  day?"sunny_snowing":"weather_snowing"
-        }
-        if([96,95].includes(id)) {
-      
-           return "thunderstorm"
-            
+            symbol="snow-light"
         }
     
   

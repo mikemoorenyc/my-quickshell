@@ -19,7 +19,7 @@ Singleton {
     property string colorLightBG: "#c6c6c6"
     property string colorTextDark: "#161616"
     
-    property string colorBorder: "#525252"
+    property string colorBorder: '#525252'
     property string colorBorderBright: "#c6c6c6"
     
     property string colorYellowBG: '#f1c21b'

@@ -7,11 +7,12 @@ import Qt5Compat.GraphicalEffects
 import qs.Bar.Weather
 import qs.Bar.QuickSettings
 import qs.Bar.CalendarWindow
-import "../util/"
+import qs.util
 import qs.Bar.Tray
 import qs.Bar.Apps
 //#6a7a00
 PanelWindow {
+
     readonly property var theme: Theme
   anchors {
     bottom:true
@@ -21,6 +22,9 @@ PanelWindow {
   id:barContainer
   implicitHeight:48
   color:theme.colorBG
+  Component.onCompleted: {
+    ShellContext.panelRefs.set("BAR_WINDOW",barContainer)
+  }
 
   
 
@@ -33,7 +37,85 @@ PanelWindow {
       right:parent.right
     }
   }
+  RowLayout {
+    id:leftSide
+    spacing:theme.marginButton;
+    anchors {
+      left:parent.left
+      top:parent.top
+      bottom:parent.bottom
+      leftMargin:12
+    }
+    Launcher {}
+    UpdateAvailable {}
+  }
+  Item {
+    height:48
+    anchors {
+      left:leftSide.right
+      top:parent.top
+      bottom:parent.bottom
+      right: appBar.right
+    }    
+          
+    MouseArea {
+      anchors.fill:parent
+      onClicked: {
+        ShellContext.openWindow=""
+      }
+    }
 
+  }
+
+  AppBar{
+    id:appBar
+    anchors {
+      top:parent.top
+      bottom:parent.bottom
+      horizontalCenter:parent.horizontalCenter
+    }
+  }
+  Item {
+    height:48
+    anchors {
+      left:appBar.right
+      top:parent.top
+      bottom:parent.bottom
+      right: rightSide.right
+    }    
+          
+    MouseArea {
+      anchors.fill:parent
+      onClicked: {
+        ShellContext.openWindow=""
+      }
+    }
+
+  }
+
+
+
+  RowLayout {
+    id:rightSide
+    spacing:theme.marginButton;
+    anchors {
+      right:parent.right
+      top:parent.top
+      bottom:parent.bottom
+      rightMargin:12
+    }
+    ScreenRecording{}
+    Pomo{}
+    MicActive{}
+    TrayButton{}
+    QuickSettingsButton{}
+    WeatherButton{}
+    Clock{
+    }
+    CalendarButton{}
+
+  }
+/*
   RowLayout {
     spacing:theme.marginButton;
     anchors {
@@ -89,6 +171,7 @@ PanelWindow {
     
     
   }
+  */
  /*MouseArea {
     visible:ShellContext.openWindow.length
     anchors.fill:parent

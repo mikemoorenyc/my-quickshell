@@ -23,15 +23,15 @@ Singleton {
 
 
     readonly property var speakerIcon : {
-        if(speakerMuted) return "no_sound"
+        if(speakerMuted) return "volume-mute"
         if(speakerVolume === 0) {
-            return "volume_mute"
+            return "volume-level-0"
         }
         if(speakerVolume < 50) {
-            return "volume_down"
+            return "volume-level-1"
         }
       
-        return "volume_up"
+        return "volume-level-2"
     }
 
 }

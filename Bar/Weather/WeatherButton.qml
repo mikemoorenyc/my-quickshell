@@ -25,6 +25,10 @@ BarButtonContainer{
     blockLoading: true
     
   }
+  click: () => {
+    ShellContext.trayButton=null
+    ShellContext.openWindow=""
+  }
   function updater(text):void {
     var data = JSON.parse(text);
 
@@ -49,7 +53,7 @@ BarButtonContainer{
             horizontalCenter:parent.horizontalCenter
             verticalCenter:parent.verticalCenter
         }
-        CDIcon {
+        SVGIcon {
           iconName:wIcon
           size:16
         }

@@ -22,6 +22,7 @@ ColumnLayout {
         implicitWidth:28
         property string i
         property var click
+        property string toolTipText
         id:soundButton
         background:Rectangle {
             color:soundButton.hovered?Theme.colorShellHover:"transparent"
@@ -34,6 +35,8 @@ ColumnLayout {
         hoverEnabled:true
         onClicked: {
             clickProcess.exec(["sh", "-c",click]) 
+            ShellContext.toolTipText = ""
+            ShellContext.toolTipState = "idle"
             if(click == "omarchy-launch-audio") {
                 ShellContext.openWindow=""
                 ShellContext.trayButton=null
@@ -43,21 +46,32 @@ ColumnLayout {
         
       
         
-            CDIcon{
-                size:22
+            SVGIcon{
+               
                 iconName:i
                 anchors {
-                    horizontalCenter:parent.horizontalCenter
-                    top:parent.top
+                   centerIn:parent
                 }
             }
-        HH{}
+        HH{onHoveredChanged: {
+            if(this.hovered) {
+                ShellContext.toolTipState = "hovering"
+                ShellContext.toolTipText = toolTipText
+                ShellContext.toolTipAnchor = soundButton
+                ShellContext.currentToolTipPanel="QUICKSETTINGS_WINDOW"
+
+            } else {
+                ShellContext.toolTipState = "idle"
+
+            }
+        }}
     }
 
   
         SoundControl {
             i:Sound.speakerIcon
             click:"pamixer -t"
+            toolTipText: Sound.speakerMuted?"Unmute":"Mute"
         }
         Slider {
             Layout.fillWidth:true
@@ -111,8 +125,9 @@ ColumnLayout {
             }
         }
         SoundControl {
-            i:"equalizer"
+            i:"audio-mixer"
             click:"omarchy-launch-audio"
+            toolTipText: "Audio settings"
         }
 
     }

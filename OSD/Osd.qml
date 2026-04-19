@@ -74,7 +74,7 @@ Scope {
                 width:2
                 color:Theme.colorBorder
             }
-            CDIcon {
+            SVGIcon {
                 size:32
                 id:speakerIcon
                 iconName: Sound.speakerIcon

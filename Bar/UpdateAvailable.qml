@@ -1,6 +1,6 @@
 import QtQuick // for Text
 import QtQuick.Controls
-import "../util/"
+import qs.util
 import Quickshell.Widgets
 import Quickshell.Io
 import QtQuick.Layouts
@@ -28,7 +28,21 @@ RowLayout {
         }
     
     
-    HH{id:mouseArea}
+    HH{id:mouseArea
+    onHoveredChanged: {
+            if(this.hovered) {
+                ShellContext.toolTipState = "hovering"
+                ShellContext.toolTipText = "There are updates available"
+                ShellContext.toolTipAnchor = updateButton
+                ShellContext.currentToolTipPanel="BAR_WINDOW"
+
+            } else {
+                ShellContext.toolTipState = "idle"
+
+            }
+        }
+    
+    }
     FileView {
         id:updatesAvail
         path:"/home/admin/.cache/arch-updates"
@@ -36,7 +50,8 @@ RowLayout {
         watchChanges: true
         onFileChanged: this.reload()
         onLoaded: {
-            if(parseInt(updatesAvail.text()) > 0) {
+      
+            if(parseInt(updatesAvail.text()) > 25) {
             isVisible = true
         } else {
             isVisible = false
@@ -64,7 +79,7 @@ RowLayout {
     visible:isVisible
     palette.buttonText: theme.colorBG
     Rectangle {
-        color:mouseArea.hovered?theme.colorYellowBG:theme.colorYellowBGHover
+        color:mouseArea.hovered?theme.colorYellowBGHover:theme.colorYellowBG
         radius:Theme.buttonRadius
         anchors {
             fill:parent

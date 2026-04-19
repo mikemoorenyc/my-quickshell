@@ -7,19 +7,25 @@ import Quickshell
 import Quickshell.Widgets
 import Quickshell.Services.SystemTray
 import qs.util
-
+import Quickshell.Wayland
 Scope {
-  LazyLoader{
-     active:ShellContext.openWindow == "SYSTEM_TRAY"
+  LazyLoader {
+    active:ShellContext.openWindow == "SYSTEM_TRAY"
     PanelContainer {
     id:baseContainer
-    
-   
-    
+    Component.onCompleted: {
+      ShellContext.panelRefs.set("SYSTEM_TRAY",baseContainer)
+ 
+    }
 
     
+    
+
+    function updateMargin() {
+      margins.left=ShellContext.trayButton.mapToItem(null,0,0).x - ((baseContainer.implicitWidth-ShellContext.trayButton.implicitWidth)/2)
+    }
   anchors {
-        right: true
+        left: true
       bottom: true
     }
     visible:ShellContext.openWindow == "SYSTEM_TRAY"
@@ -28,9 +34,25 @@ Scope {
    
 
     margins {
-        right:ShellContext.trayButton?Quickshell.screens[0].width - (ShellContext.trayButton.x + ShellContext.trayButton.implicitWidth):0
+        left:ShellContext.trayButton?Quickshell.screens[0].width - (ShellContext.trayButtonX + ShellContext.trayButtonW):0
         bottom:0
     }
+    onVisibleChanged :{
+      if(visible) {
+        checker.running = true
+      } else {
+        checker.running=false 
+      }
+    }
+    Timer {
+      id:checker
+      triggeredOnStart:true
+      interval:500
+      repeat:true
+      running:false
+      onTriggered:updateMargin()
+    }
+    
   
         
         
@@ -55,14 +77,13 @@ Scope {
       }
 
       ContextMenu.menu: TrayMenu { model: trayMenuOpener.children }
-
+      
       MouseArea {
         acceptedButtons: Qt.LeftButton | Qt.MiddleButton
         anchors.fill: parent
         id:mouseContainer
         hoverEnabled:true
         onClicked: mouse => {
-          console.log("click")
           if (mouse.button === Qt.LeftButton)
             iconImage.modelData.activate();
           else if (mouse.button === Qt.MiddleButton)
@@ -79,6 +100,8 @@ Scope {
     property alias model: iconImageMenuInstantiator.model
 
     popupType: Popup.Window
+    
+    
 
     Instantiator {
       id: iconImageMenuInstantiator
@@ -192,7 +215,9 @@ Scope {
 
   
 }
-
   }
 }
 
+/*
+
+*/

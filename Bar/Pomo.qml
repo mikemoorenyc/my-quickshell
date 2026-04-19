@@ -52,13 +52,17 @@ RowLayout {
                 pomoOn = true
                 secondClick.running = true
                 pomoColor = theme.colorGreen
-                ShellContext.openWindow=""
+               ShellContext.openWindow=""
+               ShellContext.toolTipText = ""
             }
-            CDIcon {
-                iconName:"timer"
+            SVGIcon {
+                iconName:"apple"
                 anchors.centerIn:parent
+                size:20
             }
-    
+            toolTipText: "Start the pomodoro"
+            panel:"BAR_WINDOW"
+        
         }
     }
     function stateUpdater():void {
@@ -117,10 +121,15 @@ RowLayout {
          width:90
          color:theme.colorShell
          radius:theme.buttonRadius
-         CDIcon {
+         border {
+            width:1
+            color:Theme.colorBorder
+         }
+         SVGIcon {
             rotation:rotate?-20:20
-            iconName:!pomoBreak?"timer":"coffee"
+            iconName:!pomoBreak?"apple":"coffee"
             iconColor: pomoColor
+            size:20
             anchors {
                 left: parent.left
                 leftMargin:Theme.marginButton
@@ -131,6 +140,7 @@ RowLayout {
             id:controlButton
             property string iName
             property var clickAction
+            property string toolTipText
             background: Rectangle{
                 color:"transparent"
                 border {
@@ -145,16 +155,30 @@ RowLayout {
             hoverEnabled:true
        
             palette.buttonText:this.hovered?theme.colorFG:theme.colorFGDim
-            CDIcon {
+            SVGIcon {
                 iconName:iName
           
                 iconColor:controlButton.hovered?theme.colorFG:theme.colorFGDim
                 anchors.centerIn:parent
             }
             onClicked: {
+                ShellContext.toolTipText = ""
                     clickAction()
                 }
-            HH{}
+            HH{
+                    onHoveredChanged: {
+            if(this.hovered) {
+                ShellContext.toolTipState = "hovering"
+                ShellContext.toolTipText = toolTipText
+                ShellContext.toolTipAnchor = controlButton
+                ShellContext.currentToolTipPanel="BAR_WINDOW"
+
+            } else {
+                ShellContext.toolTipState = "idle"
+
+            }
+        }
+            }
                 
         }
             
@@ -165,14 +189,16 @@ RowLayout {
                 rightMargin:theme.marginButton
             }
             PlayerControls {
-                iName: pomoPause?"pause":"play_arrow"
+                iName: pomoPause?"playback-pause":"playback-play"
+                toolTipText:pomoPause?"Start pomodoro":"Pause pomodoro"
              
                 clickAction: () => {
                      pomoPause=!pomoPause
                 }
             }
             PlayerControls {
-                iName: "stop"
+                iName: "playback-stop"
+                toolTipText:"Stop pomodoro"
                 clickAction: () => {
                     counter=baseValue
                     pomoOn=false

@@ -7,8 +7,8 @@ import Quickshell.Io
 BarButton {
     property bool isRecording: false 
     id:screenRecording
-    backgroundColor:Theme.colorRedDim
-    backgroundColorHover:Theme.colorRedBG
+    backgroundColor:Theme.colorRedBG
+    backgroundColorHover:Theme.colorRedBGHover
     borderColor:Theme.colorRedBG
     
     visible: isRecording
@@ -28,10 +28,10 @@ BarButton {
         id:shutOff
     }
     
-    CDIcon {
-        iconName:"screen_record"
+    SVGIcon {
+        iconName:"video"
         anchors.centerIn:parent
-        iconColor:"white"
+      
     }
     
     IpcHandler {

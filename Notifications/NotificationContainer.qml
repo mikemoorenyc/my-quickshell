@@ -32,7 +32,7 @@ Item {
         id:expireTimer
         running: notif.urgency!==2 && notif.expireTimeout !== 0
         interval: {
-            if(notif.expireTimeout===-1) return 5000
+            if(notif.expireTimeout===-1) return 4000
             return notif.expireTimeout
 
         }
@@ -65,26 +65,16 @@ Item {
             Layout.fillHeight:true
             Layout.rightMargin:4
         }
-        Rectangle {
-            width:36
-            height: 36
-            radius: 36
-            //visible:false
-            color:Theme.colorRedBG
-            visible: urgency==2 && !imagePath
-            CDIcon {
-                iconName:"exclamation"
-                size: 30
-                anchors {
-                    top:parent.top
-                    horizontalCenter:parent.horizontalCenter
-                }
-                
-            }
+        SVGIcon {
+            size:36
+            iconName:"warning"
+            iconColor:Theme.colorRedBG
             Layout.topMargin:12
             Layout.bottomMargin:12
             Layout.alignment:Qt.AlignTop|Qt.AlignLeft
+            visible: urgency == 2 && imagePath.length < 1
         }
+        
       
         IconImage {
             implicitSize:36
@@ -171,7 +161,8 @@ Item {
             Layout.preferredHeight:48
             Layout.alignment:Qt.AlignTop|Qt.AlignLeft
             background:Rectangle{color:"transparent"}
-            CDIcon {
+            SVGIcon {
+                size:20
                 iconName: "close"
                 iconColor:mArea.containsMouse?Theme.colorTextDark:Theme.colorShell
                 anchors.centerIn:parent

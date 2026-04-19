@@ -4,8 +4,11 @@ import QtQuick
  import Quickshell.Io 
  import Qt5Compat.GraphicalEffects
 PanelContainer {
-    
+
     id:quickSettingsContainer
+    Component.onCompleted: {
+        ShellContext.panelRefs.set("QUICKSETTINGS_WINDOW",quickSettingsContainer)
+    }
     anchors {
         right: true
         bottom: true
@@ -20,6 +23,7 @@ PanelContainer {
     implicitHeight:quickSettingsInner.implicitHeight  + 4
     implicitWidth:360 + 4
     visible: ShellContext.openWindow == "QUICKSETTINGS_WINDOW"
+  
    
     ColumnLayout {
         id: quickSettingsInner
@@ -42,7 +46,7 @@ PanelContainer {
             BluetoothButton{}
             NetworkButton{}
             SettingsButton{
-                iconS: "colorize"
+                iconS: "eyedropper"
                 nText:"Color picker"
                 Timer {
                     id:waitToClose
@@ -60,7 +64,7 @@ PanelContainer {
                 }
             }
             SettingsButton{
-                iconS: "screenshot_frame_2"
+                iconS: "camera"
                 nText: "Screen capture"
                 Timer {
                     id:waitToCap
@@ -78,7 +82,7 @@ PanelContainer {
                 }
             }
             SettingsButton{
-                iconS: "screen_record"
+                iconS: "video"
                 nText: "Screen record"
                 onClicked: {
                     ShellContext.openWindow=""
@@ -86,6 +90,7 @@ PanelContainer {
                     actioner.exec(["/home/admin/.config/my-quickshell/scripts/screen-detach.sh"])
                 }
             }
+            NightlightButton{}
         }
         VolumeSlider{}
         Rectangle {

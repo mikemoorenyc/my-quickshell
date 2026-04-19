@@ -1,6 +1,6 @@
 import QtQuick // for Text
 import QtQuick.Controls
-import "../util/"
+import qs.util
 import Quickshell.Widgets
 
 
@@ -18,12 +18,17 @@ Rectangle {
     property string borderColor: theme.colorBorder
     property string borderColorHover:borderColor
     property  bool hoverColor: (mouseArea.hovered || isActive)
+
+    property string panel
+    property string toolTipText
     signal clicked 
+    
  
 
     color:"transparent"
         
         Rectangle {
+            id:visualButton
             color:hoverColor?backgroundColorHover:backgroundColor
             anchors {
                 fill:parent
@@ -51,6 +56,8 @@ Rectangle {
       
         Button {
          onClicked: {
+            ShellContext.toolTipState="idle"
+            ShellContext.toolTipText=""
                 barButton.clicked()
             }
         font.family: theme.fontIcon
@@ -73,7 +80,41 @@ Rectangle {
         background:Rectangle {
             color:"transparent"
         }
-        HH{id:mouseArea}
-        
-    }
+        HH{
+            id:mouseArea
+            onHoveredChanged: {
+             
+                if(toolTipText.length < 1 ){
+                    ShellContext.toolTipState = "idle"
+                   
+                    return 
+                   
+                }; 
+                if(mouseArea.hovered) {
+                    if(ShellContext.openWindow.length > 1) return 
+                    ShellContext.toolTipState = "hovering"
+                    ShellContext.currentToolTipPanel = "BAR_WINDOW"
+                    ShellContext.toolTipText = toolTipText
+                    ShellContext.toolTipAnchor = visualButton
+                } else {
+                    ShellContext.toolTipState = "idle"
+                    
+                }
+            }
+        }
+
+        }
+  
 }
+/*
+onHoveredChanged: {
+                if(!toolTipText || !panel) return ; 
+                if(mouseArea.hovered) {
+                    ShellContext.toolTipState = "hovering"
+                    ShellContext.currentToolTipPanel = "BAR_WINDOW"
+                    ShellContext.toolTipText = toolTipText
+                    ShellContext.toolTipAnchor = barButton
+                }
+            }
+
+*/

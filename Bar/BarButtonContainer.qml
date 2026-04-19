@@ -12,14 +12,36 @@ Button {
     hoverEnabled:true
     property var click
     property bool isActive:false
+    property string toolTipText
     id:barContainerButton
     background: Rectangle {
         color:"transparent"
     }
     onClicked: ()=> {
+        ShellContext.toolTipText=""
+        ShellContext.toolTipState="idle"
         click(); 
     }
-    HH{}
+    HH{
+        onHoveredChanged: {
+            
+            if(toolTipText.length < 1) {
+                ShellContext.toolTipState="idle"
+                return 
+            }
+            if(this.hovered) {
+                if(ShellContext.openWindow.length > 1) return 
+                ShellContext.toolTipState = "hovering"
+                ShellContext.toolTipText = toolTipText
+                ShellContext.toolTipAnchor = barContainerButton
+                ShellContext.currentToolTipPanel="BAR_WINDOW"
+
+            } else {
+                ShellContext.toolTipState = "idle"
+
+            }
+        }
+    }
    
     
     Rectangle {
