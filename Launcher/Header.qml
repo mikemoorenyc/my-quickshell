@@ -50,8 +50,8 @@ RowLayout {
                 }
             }
             onClicked: {
+                Quickshell.execDetached(["sh", "-c","qs -c /home/admin/.config/my-quickshell ipc call launcherEnv setMenu "+MenuLogic.backMenu.slug])
                 ShellContext.launcherMenuBackSlug=""
-                buttonExec.exec(["sh", "-c","qs -c /home/admin/.config/my-quickshell ipc call launcherEnv setMenu "+MenuLogic.backMenu.slug])
             }
             HH{}
 
@@ -78,6 +78,7 @@ RowLayout {
         onClicked: {
             console.log("x click")
             ShellContext.launcherMenuSlug=""
+            ShellContext.launcherMenuBackSlug=""
         }
         HH{}
         

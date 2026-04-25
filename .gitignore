@@ -2,3 +2,6 @@
 assets/Material_*
 configs
 backgrounds
+scripts/google-calendar/node_modules
+scripts/google-calendar/credentials.json
+scripts/google-calendar/token.json

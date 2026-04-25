@@ -40,6 +40,12 @@ Singleton {
     //LAUNCHER
     property string launcherMenuSlug:""
     property string launcherMenuBackSlug:""
+    function executeLauncherCommand(command) {
+        launcherMenuSlug = ""
+        launcherMenuBackSlug=""
+        openWindow = ""
+        Quickshell.execDetached(command)
+    }
     
 
     

@@ -1,3 +1,5 @@
 {
-    "chat.agent.enabled": true
+    "chat.agent.enabled": false,
+
 }
+

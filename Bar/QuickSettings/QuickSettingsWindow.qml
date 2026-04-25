@@ -1,9 +1,12 @@
 import qs.util
 import QtQuick.Layouts
 import QtQuick
- import Quickshell.Io 
- import Qt5Compat.GraphicalEffects
-PanelContainer {
+
+ import Quickshell
+Scope {
+    LazyLoader {
+        active: ShellContext.openWindow == "QUICKSETTINGS_WINDOW"
+        PanelContainer {
 
     id:quickSettingsContainer
     Component.onCompleted: {
@@ -13,9 +16,7 @@ PanelContainer {
         right: true
         bottom: true
     }
-    Process {
-        id:actioner
-    }
+   
     margins {
         right: 12
         bottom: 0
@@ -58,39 +59,33 @@ PanelContainer {
                     }
                 }
                 onClicked: {
-                    actioner.exec(["sh", "-c","hyprpicker -a"])
+                    Quickshell.execDetached(["sh", "-c","hyprpicker -a"])
+                    
                     waitToClose.running = true
                    
                 }
             }
-            SettingsButton{
+             SettingsButton{
                 iconS: "camera"
-                nText: "Screen capture"
+                nText: "Capture"
                 Timer {
                     id:waitToCap
                     onTriggered: {
-                        actioner.exec(["sh", "-c","omarchy-cmd-screenshot"])
+                        
                         interval:0
                         running:false
                     }
                 }
                 onClicked: {
-                    
+                    Quickshell.execDetached(["sh", "-c","qs -c /home/admin/.config/my-quickshell ipc call launcherEnv setMenu capture"])
                     ShellContext.openWindow=""
                     ShellContext.trayButton=null
                     waitToCap.running = true
                 }
             }
-            SettingsButton{
-                iconS: "video"
-                nText: "Screen record"
-                onClicked: {
-                    ShellContext.openWindow=""
-                    ShellContext.trayButton=null
-                    actioner.exec(["/home/admin/.config/my-quickshell/scripts/screen-detach.sh"])
-                }
-            }
+
             NightlightButton{}
+            EnergySaverButton{}
         }
         VolumeSlider{}
         Rectangle {
@@ -105,4 +100,6 @@ PanelContainer {
 
     }
 
+}
+    }
 }

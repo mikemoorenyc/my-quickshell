@@ -18,6 +18,9 @@ SettingsButton {
         if(onlineDevices.length>1) {
             return `${onlineDevices.length} devices`
         }
+        if(onlineDevices.length<1) {
+            return "Bluetooth"
+        }
         return onlineDevices[0].name
     }
     Process {

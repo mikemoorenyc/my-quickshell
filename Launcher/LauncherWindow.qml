@@ -10,7 +10,7 @@ Scope {
     IpcHandler {
         target: "launcherEnv"
         function setMenu(value:string) {
-            
+          
             if(value == "none") {
                 ShellContext.launcherMenuSlug=""
                 ShellContext.openWindow=""
@@ -32,6 +32,14 @@ Scope {
             focusable:true
             visible: ShellContext.launcherMenuSlug.length > 1 && ShellContext.openWindow=="LAUNCHER_MENU"
             id:launcherPanel
+          
+            Component.onCompleted: {
+                ShellContext.panelRefs.set("LAUNCHER_MENU",launcherPanel)
+                if (this.WlrLayershell != null) {
+                    console.log("asdf")
+                     this.WlrLayershell.layer = WlrLayer.Overlay;
+                }
+            }
             anchors {
                 left:true
                 top:true
@@ -39,33 +47,33 @@ Scope {
                 right:true
             }
             color:"transparent"
-            
-            Component.onCompleted: {
-                ShellContext.panelRefs.set("LAUNCHER_MENU",launcherPanel)
-            }
-          Rectangle {
+
+            Rectangle {
             anchors.fill:parent
             color:"transparent"
            MouseArea {
                 anchors.fill:parent
-                z:1
+          
                 onClicked: {
-                    console.log("clicked")
+                    console.log("asdf")
                     ShellContext.openWindow = ""
                     ShellContext.trayButton = null
+                    ShellContext.launcherMenuBackSlug=""
                 }
             
              
             }
           }
+          
              
             Loader {
-                z:2
+            
                 focus:true
                 anchors.centerIn:parent
                 sourceComponent:{
                     if(ShellContext.launcherMenuSlug.length < 1 ) return blank
                     if(ShellContext.launcherMenuSlug == "apps") return appMenu
+                    if(ShellContext.launcherMenuSlug == "wallpaper") return wallpaperMenu
                     return generalMenu
                 }
                 
@@ -82,11 +90,17 @@ Scope {
                 id:appMenu
                 AppMenu{}
             }
+            Component {
+                id:wallpaperMenu
+                WallpaperMenu{}
+            }
+            
 
 
 
             
         }
+        
  
    
     

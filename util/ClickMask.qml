@@ -6,7 +6,10 @@ import Quickshell.Widgets
 import QtQuick.Layouts
 
 
-PanelWindow {
+Scope {
+    LazyLoader {
+        active:ShellContext.openWindow.length > 0 && ShellContext.openWindow !== "LAUNCHER_MENU"
+        PanelWindow {
     color:"transparent"
     visible:ShellContext.openWindow.length
   //visible:false
@@ -22,11 +25,14 @@ PanelWindow {
         onClicked: {
             ShellContext.openWindow = ""
             ShellContext.trayButton = null
-            console.log("lr")
+   
+       
         }
         onWheel: {
-            ShellContext.openWindow = ""
+          ShellContext.openWindow = ""
             ShellContext.trayButton = null
         }
+    }
+}
     }
 }

@@ -1,7 +1,7 @@
 pragma Singleton
 
 import Quickshell
-
+import QtQuick
 // Yoink this from Caelestia
 Singleton {
     //FONTS
@@ -10,7 +10,7 @@ Singleton {
     property string fontIcon: "Roboto Mono"
 
     //COLORS
-    property string colorBG: "#262626"
+    property string colorBG:"#262626"
     property string colorShell: "#393939"
     property string colorShellHover: "#474747"
     property string colorShellHoverLight: "#6f6f6f"
@@ -32,6 +32,7 @@ Singleton {
 
     property string colorGreen: "#42be65"
     property string colorGreenBG: "#24a148"
+    property string colorGreenBGHover:"#229944"
     property string colorGreenDim: "#386a47"
     property string colorRed: "#ff8389"
     property string colorRedBG: "#da1e28"
@@ -49,6 +50,8 @@ Singleton {
     property int marginButton: 8
     property int widthButton: 32
     property int heightButton:48
+
+    property var mouseHand: Qt.PointingHandCursor
 
 
     function toggleTheme() {

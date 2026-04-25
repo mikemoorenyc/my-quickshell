@@ -51,7 +51,7 @@ RowLayout {
         onFileChanged: this.reload()
         onLoaded: {
       
-            if(parseInt(updatesAvail.text()) > 25) {
+            if(parseInt(updatesAvail.text()) > 10) {
             isVisible = true
         } else {
             isVisible = false
@@ -90,7 +90,7 @@ RowLayout {
     }
     SVGIcon {
         anchors.centerIn:parent
-        iconName:"reset"
+        iconName:"renew"
         iconColor: Theme.colorTextDark
       
 

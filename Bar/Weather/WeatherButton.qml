@@ -9,8 +9,8 @@ import "../../util/weathersymbol.js" as WeatherUtil
 
 
 BarButtonContainer{
-    
-
+    toolTipText:"Current weather"
+    id:weatherButton
     property string temp:""
     property string wIcon:"weather-cloudy"
     FileView {
@@ -25,9 +25,16 @@ BarButtonContainer{
     blockLoading: true
     
   }
+  isActive: ShellContext.openWindow == "WEATHER_WINDOW"
+  
   click: () => {
-    ShellContext.trayButton=null
-    ShellContext.openWindow=""
+    if(ShellContext.openWindow == "WEATHER_WINDOW") {
+      ShellContext.trayButton=null
+      ShellContext.openWindow=""
+      return 
+    }
+    ShellContext.trayButton=weatherButton
+    ShellContext.openWindow="WEATHER_WINDOW"
   }
   function updater(text):void {
     var data = JSON.parse(text);

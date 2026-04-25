@@ -102,7 +102,7 @@ Scope {
     popupType: Popup.Window
     
     
-
+    
     Instantiator {
       id: iconImageMenuInstantiator
 
@@ -134,7 +134,9 @@ Scope {
 
               delegate: MenuItem {
                 id: menuItem
-
+                background:Rectangle {
+                  color:"red"
+                }
                 required property QsMenuEntry modelData
 
                 icon.source: modelData ? modelData.icon : ""

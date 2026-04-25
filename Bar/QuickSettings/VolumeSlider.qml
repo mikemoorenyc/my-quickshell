@@ -25,9 +25,9 @@ ColumnLayout {
         property string toolTipText
         id:soundButton
         background:Rectangle {
-            color:soundButton.hovered?Theme.colorShellHover:"transparent"
+            color:soundButton.hovered?Theme.colorBG:"transparent"
             border.width:1
-            border.color:soundButton.hovered?Theme.colorFG:Theme.colorBorder
+            border.color:Theme.colorBorder
             radius:Theme.buttonRadius
 
         }
@@ -133,7 +133,7 @@ ColumnLayout {
     }
     SettingsText {
         visible: Sound.defaultSpeaker?true:false
-        topPadding:4
+        topPadding:0
         text:Sound.defaultSpeaker?Sound.defaultSpeaker.description:""
     }
  

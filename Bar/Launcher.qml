@@ -14,7 +14,7 @@ Button {
     }
     onClicked: {
         ShellContext.openWindow = "LAUNCHER_MENU"
-        ShellContext.launcherMenuSlug = "system"
+        ShellContext.launcherMenuSlug = "settings"
     }
     property string btnColor: Theme.colorFG
     

@@ -92,7 +92,7 @@ RowLayout {
             return ; 
         }
         if(counter <=1499) {
-            pomoColor = theme.colorYellowDim
+            pomoColor = theme.colorYellowBGHover
             return 
         }
 

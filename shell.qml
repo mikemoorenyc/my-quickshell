@@ -8,12 +8,14 @@ import qs.util
 import qs.OSD
 import qs.Bar.QuickSettings
 import qs.Bar.CalendarWindow
+import qs.Bar.Weather
 import qs.Notifications
 import qs.Bar.Apps
 import qs.Tooltip
 import qs.Launcher
 ShellRoot {
-    
+
+      LauncherWindow{}
   NotificationWindow{}
   PreviewWindow{}
   Bar{}
@@ -22,8 +24,11 @@ ShellRoot {
   Osd{}
   QuickSettingsWindow{}
   CalendarWindow{}
+  WeatherWindow{}
 
-  LauncherWindow{}
   ToolTipWindow{}
-  ClickMask{}
+   ClickMask{}
+   
+
+  KeyBinds{}
 }

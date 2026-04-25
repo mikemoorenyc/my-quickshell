@@ -15,6 +15,7 @@ Item {
     property var menuData : MenuLogic.currentMenu
     property var menus 
     property int current: 0
+    property string currentMenu 
     z:2
     property string menuRaw
     onVisibleChanged :{
@@ -69,18 +70,27 @@ Item {
     onMenuSlugChanged :{
         menuText.reload()
     }
+    property string command
     Process {
         id:buttonExec
     }
+    
     function executeCommand() {
-       
+        currentMenu = MenuLogic.currentMenu.slug
+        
        
         const command = menuData.items[current].exec
-        console.log(command)
-
-        buttonExec.exec(["sh", "-c",command])
-        ShellContext.openWindow=""
-        ShellContext.launcherMenuSlug=""
+      
+        Quickshell.execDetached(["sh", "-c",command])
+        
+        //THIS MEANS THE MENU DIDN'T CHANGE
+        if(currentMenu==MenuLogic.currentMenu.slug) {
+            ShellContext.openWindow=""
+            ShellContext.launcherMenuSlug=""
+        }
+        
+     
+        
         
     }
     

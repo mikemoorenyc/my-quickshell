@@ -22,6 +22,7 @@ ColumnLayout {
         }
         Rectangle {
             Layout.fillWidth:true
+            
         }
         component MonthChanger: Button {
             property string iName: "chevron-down"
@@ -31,10 +32,10 @@ ColumnLayout {
             implicitHeight:20
             background: Rectangle {
                 anchors.fill:parent
-                color:hovered?Theme.colorShellHover:"transparent"
+                color:hovered?Theme.colorBG:"transparent"
                 radius:Theme.buttonRadius
                 border {
-                    color:hovered?Theme.colorFG:Theme.colorBorder
+                    color:Theme.colorBorder
                 }
             }
             onClicked: () => {

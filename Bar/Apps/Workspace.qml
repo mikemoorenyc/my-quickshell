@@ -99,7 +99,7 @@ Item {
                     }
                     Timer {
                         id:previewOpener
-                        interval:1000
+                        interval:500
                         onTriggered: {
                             if(ShellContext.previewHovering) {
                                 return 
